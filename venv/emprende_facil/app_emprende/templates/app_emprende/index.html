@@ -1,0 +1,65 @@
+
+{% extends "app_emprende/layout.html" %}
+{% block content %}
+<div class="row fixed-top border-bottom border-dark width-100 text-center " style="background-color: #141f25;">
+    <div class="col-auto ">
+        <img src="/static/images/1.png" style="max-width: 25px;" class="m-2" alt="">
+        
+    </div>
+    <div class="col d-flex align-items-end text-center">
+        <h6 class="text-center" style="color: #56656e;">Mapa De Crecimiento</h6>
+    </div>
+   
+</div>
+<br> <br> <br>
+
+<div class="container-fluid" style="background-color: #141f25;">
+    <!--separador-->
+    <div class="row">
+        <br>
+    </div>
+    <!--primer objetivo-->
+
+    <div class="row">
+        <div class="col text-center">
+            <div class="col text-center">
+                <button class="btn btn-danger rounded-circle p-4" data-bs-toggle="collapse" data-bs-target="#collapseInventario" aria-expanded="false" aria-controls="collapseExample">
+                    <i class="fa-solid fa-cube fa-2xl"></i>
+                </button>
+                <div class="collapse" id="collapseInventario">
+                    <div class="card text-white bg-danger mb-3">
+                        <div class="card-header">Inventario</div>
+                        <div class="card-body">
+                        <h4 class="card-title"></h4>
+                        <p class="card-text">
+                            Aprende a controlar tu inventario desde tu celular y a ganar más dinero mientras gastas menos.
+                        </p>
+                        <a href="{% url 'inventario'%}" class="btn btn-success">Empezar</a>
+                    </div>
+                    
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div> 
+<br>
+<br>
+
+<!--Segundos objetivos-->
+    <div class="row d-flex justify-content-center">
+        <div class="col text-center">
+            <button class="btn btn-secondary rounded-circle p-4">
+                <i class="fa-solid fa-comments-dollar fa-2xl"></i>
+            </button>
+        </div>
+    </div>
+   <br>
+   <br>
+
+   
+    
+</div>
+<br>
+
+
+{% endblock %}
