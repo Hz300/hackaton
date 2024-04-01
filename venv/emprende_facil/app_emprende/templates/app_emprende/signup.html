@@ -1,0 +1,231 @@
+{% extends "app_emprende/layout_lecciones.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-fluid p-0 h-100 vh-100">
+    <div class="row h-100">
+        <div class="col h-100">
+            <div id="carouselExample" class="carousel slide container-fluid p-0 h-100" style="">
+                <div class="carousel-inner h-100">
+                    <!--primer diapositiva-->
+                    <div class="carousel-item active h-100">
+                        <div class="container-fluid  p-0 h-100">
+
+                            <div class="container-fluid text-center align-items-center justify-content-center">
+                                
+                                <figure class="text-center mt-5 pt-5">
+                                    <blockquote class="blockquote">
+                                      <p class="mb-0">Bienvenido a Emprende Fácil, Estamos aquí para ayudarte a lograr  el éxito</p>
+                                    </blockquote>
+                                    <img src="/static/images/1.png" alt="" class="w-50">
+                                </figure>
+                            </div>
+
+
+
+                            <!--Boton siguiente-->
+                            <div class="container-fluid fixed-bottom mb-5 d-flex justify-content-center">
+                                <button class="btn btn-success btn-lg text-center fixed-bo border-bottom w-75" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                    siguiente
+                                </button>
+                            </div>
+                                
+                            
+                        </div>
+                    </div>
+                
+                <!--pagina 2-->
+                    <div class="carousel-item h-100">
+                        <div class="container-fluid  p-0 h-100">
+                            <div class="row d-flex justify-content-center">
+                                <div class="col-auto d-flex justify-content-center align-items-center p-1 ml-1">
+                                    <img src="/static/images/1.png" alt="" class="w-100" style="max-width: 100px;">
+                                </div>
+                                <div class="col col-8 d-flex align-items-center">
+                                    <h4>¡Primero ayúdame a contestar unas preguntas!</h4>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row h-25">
+                                <div class="col d-flex align-items-end justify-content-center">
+                                    <p>¿Cual es tu nombre?</p>
+                                </div>
+                            </div>
+                            <form method="post">
+                                {% csrf_token %}
+                            <div class="row">
+                                <div class="col d-flex justify-content-center align-items-start ">
+                                    {{ form.first_name }}
+                                </div>
+                            </div>
+                            
+
+
+
+                            <!--Boton siguiente-->
+                            <div class="container-fluid fixed-bottom mb-5 d-flex justify-content-center">
+                                <button class="btn btn-success btn-lg text-center fixed-bo border-bottom w-75" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                    siguiente
+                                </button>
+                            </div>
+                                
+                            
+                        </div>
+                    </div>
+
+                <!--pagina 3-->
+                <div class="carousel-item h-100">
+                    <div class="container-fluid  p-0 h-100">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-auto d-flex justify-content-center align-items-center p-1 ml-1">
+                                <img src="/static/images/1.png" alt="" class="w-100" style="max-width: 100px;">
+                            </div>
+                            <div class="col col-8 d-flex align-items-center">
+                                <h4>¡Primero ayúdame a contestar unas preguntas!</h4>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row h-25">
+                            <div class="col d-flex align-items-end justify-content-center">
+                                <p>¿Como se llama tu negocio?</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col d-flex justify-content-center align-items-start ">
+                                {{ form.nombre_empresa }}
+                            </div>
+                        </div>
+                        
+
+
+
+                        <!--Boton siguiente-->
+                        <div class="container-fluid fixed-bottom mb-5 d-flex justify-content-center">
+                            <button class="btn btn-success btn-lg text-center fixed-bo border-bottom w-75" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                siguiente
+                            </button>
+                        </div>
+                            
+                        
+                    </div>
+                </div>
+
+                <!--pagina 4-->
+                <div class="carousel-item h-100">
+                    <div class="container-fluid  p-0 h-100">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-auto d-flex justify-content-center align-items-center p-1 ml-1">
+                                <img src="/static/images/1.png" alt="" class="w-100" style="max-width: 100px;">
+                            </div>
+                            <div class="col col-8 d-flex align-items-center">
+                                <h4>¡Primero ayúdame a contestar unas preguntas!</h4>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row h-25">
+                            <div class="col d-flex align-items-end justify-content-center">
+                                <p>Email</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col d-flex justify-content-center align-items-start ">
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        
+
+
+
+                        <!--Boton siguiente-->
+                        <div class="container-fluid fixed-bottom mb-5 d-flex justify-content-center">
+                            <button class="btn btn-success btn-lg text-center fixed-bo border-bottom w-75" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                siguiente
+                            </button>
+                        </div>
+                            
+                        
+                    </div>
+                </div>
+
+                <!--pagina 4-->
+                <div class="carousel-item h-100">
+                    <div class="container-fluid  p-0 h-100">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-auto d-flex justify-content-center align-items-center p-1 ml-1">
+                                <img src="/static/images/1.png" alt="" class="w-100" style="max-width: 100px;">
+                            </div>
+                            <div class="col col-8 d-flex align-items-center">
+                                <h4>¡Primero ayúdame a contestar unas preguntas!</h4>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row h-25">
+                            <div class="col d-flex align-items-end justify-content-center">
+                                <p>Nombre de usuario</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col d-flex justify-content-center align-items-start ">
+                                {{ form.username }}
+                            </div>
+                        </div>
+                        
+
+
+
+                        <!--Boton siguiente-->
+                        <div class="container-fluid fixed-bottom mb-5 d-flex justify-content-center">
+                            <button class="btn btn-success btn-lg text-center fixed-bo border-bottom w-75" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                                siguiente
+                            </button>
+                        </div>
+                            
+                        
+                    </div>
+                </div>
+                 <!--pagina 5-->
+                 <div class="carousel-item h-100">
+                    <div class="container-fluid  p-0 h-100">
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-auto d-flex justify-content-center align-items-center p-1 ml-1">
+                                <img src="/static/images/1.png" alt="" class="w-100" style="max-width: 100px;">
+                            </div>
+                            <div class="col col-8 d-flex align-items-center">
+                                <h4>¡Primero ayúdame a contestar unas preguntas!</h4>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="row h-25">
+                            <div class="col d-flex align-items-end justify-content-center">
+                                <p>Contraseña</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col d-flex justify-content-center align-items-start ">
+                                {{ form.password }}
+                            </div>
+                        </div>
+                        
+
+
+
+                        <!--Boton siguiente-->
+                        <div class="container-fluid fixed-bottom mb-5 d-flex justify-content-center">
+                            <button class="btn btn-success btn-lg text-center border-bottom w-75" type="submit">
+                                siguiente
+                            </button>
+                        </div>
+                            
+                        
+                    </div>
+                </div>
+            </form>
+                </div>
+            </div>
+        </div>        
+    </div>
+    <div class="row">
+        
+    </div>
+
+</div>                           
+{%endblock%}
