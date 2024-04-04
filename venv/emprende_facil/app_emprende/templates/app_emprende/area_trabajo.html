@@ -2,12 +2,12 @@
 {% block content %}
 <!--header starts-->
 <div class="container-fluid">
-    <div class="row fixed-top border-bottom border-dark width-100 text-center " style="background-color: #141f25;">
+    <div class="row fixed-top  width-100 text-center " style="background-color: #1CB0F6;">
         <div class="col-auto ">
             <img src="/static/images/1.png" style="max-width: 25px;" class="m-2" alt="">
             
         </div>
-        <div class="col d-flex align-items-end text-center">
+        <div class="col d-flex align-items-end text-center w-100">
             <h6 class="text-center" style="color: #56656e;">Area De Trabajo</h6>
         </div>   
     </div>
@@ -45,8 +45,8 @@
                           <!--Inicia formulario-->
                           <form method="post">
                             {% csrf_token %}
-                            {{ form.as_p }}
-                            <button type="submit" class="btn btn-info btn-large">Guardar</button>
+                            {{ form_productos.as_p }}
+                            <button type="submit" class="btn btn-info btn-large" >Guardar</button>
                         </form>
                             <!--fin de formulario-->
                         </div>
@@ -167,17 +167,65 @@
               </div>
 
             <!--Herramienta Ventas-->
-            <button class="container  btn bg-success w-75 rounded-3 mb-2 mx-2" >
+            <button class="container  btn bg-success w-75 rounded-3 mb-2 mx-2" data-bs-toggle="modal" data-bs-target="#VentasModal">
                 <div>
                     <h2 class="text-center" style="color: white;"><b>Ventas</b></h2>
                     <img src="/static/images/ventas.png" alt="" class="w-75">
                 </div>
             </button>
 
+            <!--inicia modal de ventas-->
+            <div class="modal" id="VentasModal">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">Ventas</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+
+                        <div class="modal-body">
+                            <form id="venta_form" method="post">
+                                {% csrf_token %}
+                                {{ form_venta.as_p }}
+                            <p>Total de la venta: </p>{% csrf_token %} {{ total_venta }}
+                                
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                            <script>
+                                $(document).ready(function() {
+                                    // Función para calcular los totales automáticamente
+                                    function calcularTotales() {
+                                        var cantidad = parseInt($('#id_cantidad').val()); // Obtiene la cantidad ingresada
+                                        var precioUnitario = parseFloat($('#id_producto option:selected').data('precio-venta')); // Obtiene el precio de venta del producto seleccionado
+                                        var totalVenta = cantidad * precioUnitario; // Calcula el total de la venta
+                                        var totalGanar = totalVenta * 0.1; // Por ejemplo, asumiendo un 10% de ganancia
+                                        
+                                        // Actualiza los campos de total_venta y total_ganar en el formulario
+                                        $('#id_total_venta').val(totalVenta.toFixed(2));
+                                        $('#id_total_ganar').val(totalGanar.toFixed(2));
+                                    }
+                                
+                                    // Llama a la función calcularTotales cuando se cambia la cantidad o el producto
+                                    $('#id_cantidad, #id_producto').change(calcularTotales);
+                                
+                                    // Calcula los totales al cargar la página
+                                    calcularTotales();
+                                });
+                                </script>
+                                <button type="submit" class="btn btn-info btn-large">Registrar</button>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <!--termina modal de ventas-->
             
 
             <!--herramienta finanzas-->
-            <button class="container btn bg-warning w-75 rounded-3 mx-2 mb-2">
+            <button class="container btn btn-warning w-75 rounded-3 mx-2 mb-2">
                 <div>
                     <h2 class="text-center" style="color: white;"><b>Finanzas</b></h2>
                     <img src="/static/images/finanzas.png" alt="" class="w-75">
@@ -213,4 +261,6 @@
         });
     });
 </script>
+
+    
 {% endblock %}

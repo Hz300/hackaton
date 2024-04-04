@@ -1,37 +1,53 @@
 
 {% extends "app_emprende/layout.html" %}
 {% block content %}
-<div class="row fixed-top border-bottom border-dark width-100 text-center " style="background-color: #141f25;">
+<div class="row fixed-top  border-light width-100 text-center " style="background-color: #ffcf36;">
     <div class="col-auto ">
         <img src="/static/images/1.png" style="max-width: 25px;" class="m-2" alt="">
         
     </div>
     <div class="col d-flex align-items-end text-center">
-        <h6 class="text-center" style="color: #56656e;">Mapa De Crecimiento</h6>
+        <h6 class="text-center text-info">Mapa De Crecimiento</h6>
+    </div>
+    <div class="col-auto me-4 mt-1 d-flex justify-content-start text-center">
+        <h3 class="border rounded-circle px-2 text-info border-info">{{ request.session.level }}</h3>
     </div>
    
 </div>
 <br> <br> <br>
 
-<div class="container-fluid" style="background-color: #141f25;">
+<div class="container-fluid" style="background-color: #dfe0e1;">
     <!--separador-->
     <div class="row">
         <br>
     </div>
-    <!--primer objetivo-->
-
-    <div class="row">
+    {% if request.session.level == 1 %}
+    <div class="row mb-0 pb-0">
         <div class="col text-center">
-            <div class="col text-center">
-                <button class="btn btn-danger rounded-circle p-4" data-bs-toggle="collapse" data-bs-target="#collapseInventario" aria-expanded="false" aria-controls="collapseExample">
-                    <i class="fa-solid fa-cube fa-2xl"></i>
+            <h3>Empieza Aqui!</h3>
+        </div>
+    </div>
+    <div class="row p-0 m0">
+        <div class="col text-center">
+            <i class="fa-solid fa-angles-down" style="color: #1CB0F6;"></i>
+        </div>
+    </div>
+    {%endif%}
+    <!--primer objetivo-->
+    
+    <div class="row pb-0 mb-0">
+        <div class="col text-center mb-0">
+            <div class="col text-center mb-0">
+                {% if request.session.level == 1 %}
+                <button class="btn btn-warning rounded-circle p-4" data-bs-toggle="collapse" data-bs-target="#collapseInventario" aria-expanded="false" aria-controls="collapseExample">
+                    <i class="fa-solid fa-cube fa-2xl text-primary"></i>
                 </button>
                 <div class="collapse" id="collapseInventario">
-                    <div class="card text-white bg-danger mb-3">
-                        <div class="card-header">Inventario</div>
+                    <div class="card text-white  mb-3">
+                        <div class="card-header text-primary">Inventario</div>
                         <div class="card-body">
                         <h4 class="card-title"></h4>
-                        <p class="card-text">
+                        <p class="card-text text-primary">
                             Aprende a controlar tu inventario desde tu celular y a ganar más dinero mientras gastas menos.
                         </p>
                         <a href="{% url 'inventario'%}" class="btn btn-success">Empezar</a>
@@ -39,27 +55,235 @@
                     
                     </div>
                   </div>
+                  {%elif request.session.level > 1%}
+                  <button class="btn btn-info rounded-circle p-3" data-bs-toggle="collapse" data-bs-target="#collapseInventario" aria-expanded="false" aria-controls="collapseExample">
+                    <i class="fa-solid fa-cube fa-xl"></i>
+                </button>
+                <div class="collapse" id="collapseInventario">
+                    <div class="card bg-info text-white border-success mb-3">
+                        <div class="card-header">Inventario</div>
+                        <div class="card-body">
+                        <p class="card-text">
+                            Aqui analisamos la importancia de tener un buen inventario. pudes utilizar los siguientes vinculos para seguir aprendiendo
+                        </p>
+                       
+                              <a href="https://www.enko.org/mx/encoppel/seccion/como-hacer-mejor-las-compras-de-tu-negocio-154/parte/693"><h4 class="text.warning" style="text-decoration:none; color: white;">¿Cómo hacer mejor las compras de tu negocio?</h4></a>
+                          
+                        <a href="{% url 'inventario'%}" class="btn btn-light">Repasar</a>
+                    </div>
+                    
+                    </div>
+                  </div>
+                  {%endif%}
             </div>
+
         </div>
     </div> 
-<br>
-<br>
 
-<!--Segundos objetivos-->
+<div class="row">
+    <div class="col text-center">
+        <i class="fa-solid fa-ellipsis-vertical text-white fa-3x"></i>
+    </div>
+</div>
+<!--objetivo ventas-->
     <div class="row d-flex justify-content-center">
         <div class="col text-center">
-            <button class="btn btn-secondary rounded-circle p-4">
-                <i class="fa-solid fa-comments-dollar fa-2xl"></i>
+            {% if request.session.level < 2%}
+            <button  class="btn rounded-circle btn-secondary p-4" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Ventas: Completa el objetivo anterior para desbloquear" aria-describedby="tooltip169230"  >
+                <i class="fa-solid fa-cube fa-2xl"></i>
             </button>
+            {%elif request.session.level == 2%}
+            <button  class="btn rounded-circle btn-warning p-4" data-bs-toggle="collapse" data-bs-target="#collapseVentas" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fa-solid fa-money-bill-trend-up fa-2xl text-primary"></i>
+            </button>
+            <div class="collapse" id="collapseVentas">
+                <div class="card mb-3">
+                    <div class="card-header">Inventario</div>
+                    <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <p class="card-text">
+                        Adquiere el control de tu negocio vendiendo desde la plataforma de Emprende Facil
+                    </p>
+                    <a href="{% url 'ventas'%}" class="btn btn-success">Empezar</a>
+                </div>
+                
+                </div>
+            </div>
+            {%else%}
+            <button  class="btn rounded-circle btn-info p-3" data-bs-toggle="collapse" data-bs-target="#collapseVentas" aria-expanded="false" aria-controls="collapseExample"    >
+                <i class="fa-solid fa-money-bill-trend-up fa-xl"></i>
+            </button>
+            <div class="collapse" id="collapseVentas">
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-header">Ventas</div>
+                    <div class="card-body">
+                    <h4 class="card-title"></h4>
+                    <p class="card-text">
+                        Adquiere el control de tu negocio vendiendo desde la plataforma de Emprende Facil
+                    </p>
+                    <a href="{% url 'ventas'%}" class="btn btn-secondary">Repazar</a>
+                </div>
+                
+                </div>
+            </div>
+        </div>
+            {%endif%}
+    </div>
+
+        <!--fin objetivo ventas-->
+
+        <div class="row">
+            <div class="col text-center">
+                <i class="fa-solid fa-ellipsis-vertical text-white fa-3x"></i>
+            </div>
+        </div>
+        
+          <!--objetivo clientes-->
+
+        {% if request.session.level  < 3%}
+        <div class="row d-flex justify-content-center">
+            <div class="col text-center">
+                <button  class="btn rounded-circle btn-secondary p-4" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="clientes: Completa el objetivo anterior para desbloquear" aria-describedby="tooltip169230"   >
+                    <i class="fa-solid fa-users fa-2xl"></i>
+                </button>
+            </div>  
+        </div>
+        {%endif%}
+
+        {% if request.session.level  == 3%}
+
+      <div class="row d-flex justify-content-center">
+        <div class="col text-center">
+            <button  class="btn rounded-circle btn-warning p-4  text-center" data-bs-toggle="collapse" data-bs-target="#collapseClientes" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fa-solid fa-users fa-2xl text-primary"></i>
+            </button>
+            <div class="collapse" id="collapseClientes">
+                <div class="card mb-3">
+                    <div class="card-header">Cliente</div>
+                        <div class="card-body">
+                        <h4 class="card-title"></h4>
+                        <p class="">
+                            Aqui analisamos la importancia de tener unuen inventario. pudes utilizar los siguientes vinculos para seguir aprendiendo
+                        </p>
+                        <a href="{% url 'inventario'%}" class="btn btn-success">comenzar</a>
+                    </div>  
+                </div>   
+            </div>  
+        </div> 
+    </div>
+        {% elif request.session.level  > 3%}   
+    <div class="row d-flex justify-content-center"> 
+        <div class="col text-center">
+            <button  class="btn rounded-circle btn-info p-3" data-bs-toggle="collapse" data-bs-target="#collapseClientes" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fa-solid fa-users fa-xl"></i>
+            </button>
+            <div class="collapse" id="collapseClientes">
+                <div class="card bg-info mb-3">
+                    <div class="card-header">Cliente</div>
+                        <div class="card-body">
+                        <h4 class="card-title"></h4>
+                        <p class="card-text">
+                            Aqui analisamos la importancia de tener unuen inventario. pudes utilizar los siguientes vinculos para seguir aprendiendo
+                        </p>
+                        <a href="{% url 'inventario'%}" class="btn btn-light">Repasar</a>
+                    </div>  
+                </div>   
+            </div>  
+        </div> 
+    </div>   
+        {%endif%}
+        
+
+    </div>
+   
+    <!--fin objetivo clientes-->
+    <div class="row">
+        <div class="col text-center">
+            <i class="fa-solid fa-ellipsis-vertical text-white fa-3x"></i>
         </div>
     </div>
-   <br>
-   <br>
+    <!-- objetivo finanzas-->
+    {% if request.session.level  < 4 %}
 
-   
+    <div class="row d-flex justify-content-center">
+            <div class="col text-center">
+                <button  class="btn rounded-circle btn-secondary p-4" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Finanzas: Completa el objetivo anterior para desbloquear" aria-describedby="tooltip169230"  >
+                    <i class="fa-solid fa-calculator fa-2xl"></i>
+                </button>
+            </div>
+    </div>
+
+    {%elif request.session.level  == 4%}
+
+    <div class="row d-flex justify-content-center">
+        <div class="col text-center">
+            <button  class="btn rounded-circle btn-warning p-4 text-center mb-0" data-bs-toggle="collapse" data-bs-target="#collapseFinanzas" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fa-solid fa-calculator fa-2xl"></i>
+            </button>
+            <div class="collapse" id="collapseFinanzas">
+                <div class="card  mb-3">
+                    <div class="card-header">Cliente</div>
+                        <div class="card-body">
+                        <h4 class="card-title"></h4>
+                        <p class="card-text">
+                            Aqui analisamos la importancia de tener unuen inventario. pudes utilizar los siguientes vinculos para seguir aprendiendo
+                        </p>
+                        <a href="{% url 'inventario'%}" class="btn btn-light">Repasar</a>
+                    </div>  
+                </div>   
+            </div>  
+        </div>
+    </div>
+
+
+    {%endif%}
+    <div class="row">
+        <div class="col text-center">
+            <i class="fa-solid fa-ellipsis-vertical text-white fa-3x"></i>
+        </div>
+    </div>
+
+ <!--cuarto objetivo-->
+ <div class="row d-flex justify-content-center">
+    <div class="col text-center">
+        <button  class="btn rounded-circle btn-secondary p-4" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Ventas: Completa el objetivo anterior para desbloquear" aria-describedby="tooltip169230"  >
+            <i class="fa-solid fa-triangle-exclamation fa-2xl"></i>
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col text-center">
+        <i class="fa-solid fa-ellipsis-vertical text-white fa-3x"></i>
+    </div>
+</div>
+ <!--cuarto objetivo-->
+ <div class="row d-flex justify-content-center">
+    <div class="col text-center">
+        <button  class="btn rounded-circle btn-secondary p-4" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-original-title="Ventas: Completa el objetivo anterior para desbloquear" aria-describedby="tooltip169230"  >
+            <i class="fa-solid fa-piggy-bank fa-2xl "></i>
+        </button>
+    </div>
+</div>
+<div class="row">
+    <div class="col text-center">
+        <i class="fa-solid fa-ellipsis-vertical text-white fa-3x"></i>
+    </div>
+</div>  
     
 </div>
-<br>
+<div class="row">
+    <div class="col text-center">
+        <i class="fa-solid fa-ellipsis-vertical text-white fa-3x"></i>
+    </div>
+</div>
 
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+    tooltipTriggerList.forEach(function(tooltipTriggerEl) {
+        new bootstrap.Tooltip(tooltipTriggerEl);
+    });
+});
+</script>
 {% endblock %}

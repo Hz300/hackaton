@@ -1,9 +1,10 @@
 {% extends "app_emprende/layout_lecciones.html" %}
 {% block content %}
+
 <div class="container-fluid p-0 h-100 vh-100">
     <div class="row h-auto w-100">
         <a href="{%url 'index'%}" class="mb-3 mt-4 ms-3 me-5">
-            <i class="fa-regular fa-circle-xmark  fa-xl"></i>
+            <i class="fa-regular fa-circle-xmark fa-xl"></i>
         </a>
     </div>
     <div class="row h-auto">
@@ -21,14 +22,13 @@
                     <div class="carousel-item active h-100">
                         <div class="container-fluid  p-0 h-100">
                             <div class="container-fluid text-center">
-                                <h1>inventario</h1>
+                                <h1>Ventas</h1>
                             </div>
 
                             <div class="container">
                                 <h3>
-                                    Un inventario es un registro detallado de todos
-                                     los productos, materiales o recursos que tienes 
-                                     disponibles. Tener un inventario te ayuda a tener un control completo sobre lo que tienes y a saber cuándo necesitas reponer o actualizar ciertos elementos.
+                                     
+¿Quieres que tu negocio vaya viento en popa? ¡Pues aquí te traigo el truco! Se trata de algo muy sencillo <br><br><b>¡llevar un registro de todo lo que vendes!</b> <br><br>¿Por qué es tan importante? Bueno, eso te lo explico rápido y fácil.
                                 </h3>
                             </div>
 
@@ -54,9 +54,12 @@
 
                             <div class="container">
                                <ul>
-                                <li><h4>Te ayuda a evitar la falta de productos cuando los clientes desean comprarlos.</h4></li>
-                                <li><h4>Te permite calcular con precisión tus ganancias y costos</h4></li>
-                                <li><h4>Te dara mas control sobre tu negocio para que puedas crecer mas rapido</h4></li>
+                                <li><h4>Controla mejor tu dinero: Sabrás exactamente cuánto ganas.</h4></li>
+                                <li><h4>Vende más inteligentemente: Aprende qué productos se venden mejor y cuándo.</h4></li>
+                                <li><h4>Mejores precios con proveedores: Si tienes todo anotado, puedes hablar con quienes te venden productos y conseguir mejores precios.</h4></li>
+                                <li><h4>Más apoyo financiero: Llevar registros claros ayuda a convencer a prestamistas e inversores de que tu negocio es sólido y puede crecer, lo que facilita obtener préstamos o inversiones.
+                                </h4></li>
+                                
                                </ul>
                             </div>
 
@@ -81,56 +84,25 @@
                         </div>
 
                         <div class="container">
-                           <ul>
-                            <li><h4>Mantén un registro detallado de cada vez que ingresa o sale un producto o servicio de tu inventario. Esto incluye ventas, compras, devoluciones y cualquier otra transacción relevante.</h4></li>
-                
-                           </ul>
+                   
+                        <h3>En Emprende Fácil, hemos diseñado una herramienta para que puedas registrar tus ventas de manera fácil y rápida. <br><br><b>Haz clic en el botón para acceder al área de trabajo y comenzar a utilizarla.</h3></b>
                         </div>
 
 
 
                         <!--Boton siguiente-->
                         <div class="container-fluid fixed-bottom mb-4 d-flex justify-content-center">
-                            <button class="btn btn-success btn-lg text-center fixed-bo border-bottom w-75" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-                                siguiente
-                            </button>
-                        </div>
-                            
-                        
-                    </div>
-                </div>
-
-                <!--pagina 4-->
-                <div class="carousel-item h-100">
-                    <div class="container-fluid  p-0 h-100">
-                        <div class="container-fluid text-center">
-                            <h2>Aprende mas</h2>
-                        </div>
-
-                        <div class="container">
-                            <h4>Ahora vamos a iniciar nuestro inventario en la plataforma de Emprende Fácil. Cuando estés listo, presiona el botón para comenzar.</h4>
-                           <h4>Si te interesa aprender más sobre cómo tener un buen inventario, puedes revisar cualquiera de los siguientes artículos que hemos seleccionado para ti.</h4>
-                        </div>
-                        <div>
-                            <ul>
-                                <li><a href="https://bind.com.mx/recursos/guia-basica-para-el-control-de-inventarios" target="_blank"><h4>Guía básica para el control de inventarios</h4></a></li>
-                                <li><a href="https://blog.euncet.com/mejores-practicas-gestion-de-inventario/" target="_blank"><h4>Mejores prácticas para la gestión de inventario</h4></a></li>
-                            </ul>
-                        </div>
-
-
-
-                        <!--Boton siguiente-->
-                        <!--a button that works as a link and also updates the session variable level-->
-                        <div class="container-fluid fixed-bottom mb-4 d-flex justify-content-center">
-                            <a href="{% url 'area_trabajo' %}" class="btn btn-warning btn-lg text-center border-bottom w-75 counter " type="button">
-                                Quiero Iniciar Mi Inventario
+                            <a href="{% url 'area_trabajo'%}" class="btn btn-warning btn-lg text-center border-bottom w-75 counter" type="button">
+                                Comencemos a Vender
                             </a>
                         </div>
                             
                         
                     </div>
                 </div>
+
+            
+              
 
                 </div>
             </div>
@@ -155,8 +127,4 @@
     });
   </script>
 
-
-<!-- js for changing the value of the session variable level when the button .counter is clicked -->
-
-{% endblock %}
-
+{% endblock%}

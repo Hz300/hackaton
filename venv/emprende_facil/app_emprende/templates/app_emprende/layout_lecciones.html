@@ -2,17 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="csrf-token" content="{{ csrf_token }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Emprende Facil</title>
     <link rel="stylesheet" href="https://bootswatch.com/5/darkly/bootstrap.min.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/67c068d2d8.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/custom.css">
 </head>
-<body style="background-color: #141f25;">
+<body style="background-color: #dfe0e1;">
 {% block content %}
 
 {% endblock %}
@@ -33,7 +35,68 @@
       });
   });
 </script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous" data-bs-no-jquery></script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Fetch the current level from the server
+    fetch('/get-level')
+        .then(response => {
+            console.log('Response from /get-level:', response);
+            return response.json();
+        })
+        .then(data => {
+            console.log('Data from /get-level:', data);
+            // Retrieve the current level from the response data
+            const currentLevel = data.level;
+
+            // Define and initialize the level variable
+            let level = currentLevel;
+
+            // The button with the class "counter" is clicked
+            const button = document.querySelector('.counter');
+            console.log(button.href);
+            button.addEventListener('click', async () => {
+                try {
+                    // Increment the level
+                    level++;
+                    console.log('New level:', level);
+
+                    // Fetch the CSRF token from a meta tag in the HTML
+                    const csrfToken = document.querySelector('meta[name="csrf-token"]').content;
+
+                    // Fetch the url "/updateLevel" with a POST request
+                    const response = await fetch('/updateLevel', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': csrfToken
+                        },
+                        body: JSON.stringify({ level: level })
+                    });
+
+                    // If the request was successful (response.ok is true)
+                    if (response.ok) {
+                        console.log('Level updated successfully');
+                        // Manually redirect to the href of the button
+                        window.location.href = button.href;
+                    } else {
+                        // If there was an error, log the error to the console
+                        console.log('Error updating level:', response);
+                    }
+                } catch (error) {
+                    // If there was a network error, log the error to the console
+                    console.log('Network error:', error);
+                }
+            });
+        })
+        .catch(error => {
+            // If there was an error fetching the current level, log the error to the console
+            console.log('Error fetching level:', error);
+        });
+});
+</script>
 
 </body>
 </html>
